@@ -7,17 +7,17 @@ import java.util.Comparator;
 import java.util.List;
 
 public class PokerGame {
-	private String[] types = {"high card:", "pair", "two pairs", "three of a kind", "straight", "flush", "full house", "four of a kind", "None","straight flush"};
+	private String[] types = {"high card: ", "pair", "two pairs", "three of a kind", "straight", "flush", "full house", "four of a kind", "None","straight flush"};
 	private ArrayList<Poker> black = new ArrayList<Poker>();
 	private ArrayList<Poker> white = new ArrayList<Poker>();
 	private int[] black_situation = new int[4];
 	private int[] white_situation = new int[4];
 	private int flag = -1; //黑获胜0，白获胜1，平局-1
 	private String high_card = "Ace";
-	private String type = "high card:";
+	private String type = "high card: ";
 	private int black_level = 1;
 	private int white_level = 1;
-	PokerGame(String _black, String _white){
+	public PokerGame(String _black, String _white){
 		String[] tmp_b = _black.split(" ");
 		String[] tmp_w = _white.split(" ");
 		for(int i = 0; i < tmp_b.length; i++) {
@@ -31,7 +31,7 @@ public class PokerGame {
 	}
 	public static void main(String[] args) {		
 		String black = "2H 3D 5S 9C KD";
-		String white = "2D 3H 5C 9S KH";
+		String white = "2C 3H 4S 8C AH";
 		PokerGame pg = new PokerGame(black, white);
 		System.out.println(pg.getResult());	
 	}
@@ -91,12 +91,16 @@ public class PokerGame {
 		for(int i = 0; i < black.size(); i++) {
 			if(black.get(i).point > white.get(i).point) {				
 				flag = 0;
-				high_card = black.get(i).getPoint(); 
+				high_card = black.get(i).getPoint();
+				if(high_card.equals("A"))
+					high_card = "Ace";
 				return;
 			}
 			if(white.get(i).point > black.get(i).point) {			
 				flag = 1;
 				high_card = white.get(i).getPoint(); 
+				if(high_card.equals("A"))
+					high_card = "Ace";
 				return;
 			}
 		}
