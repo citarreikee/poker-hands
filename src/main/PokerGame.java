@@ -31,7 +31,7 @@ public class PokerGame {
 	}
 	public static void main(String[] args) {		
 		String black = "2H 3D 5S 9C KD";
-		String white = "2C 3H 4S 8C AH";
+		String white = "2D 3H 5C 9S KH";
 		PokerGame pg = new PokerGame(black, white);
 		System.out.println(pg.getResult());	
 	}
@@ -117,8 +117,8 @@ public class PokerGame {
 		int counts1 = 0;
 		int counts2 = 0;
 		for(int index = 0; index < black.size(); index++) {
-			int tmp1 = 0;
-			int tmp2 = 0;
+			int tmp1 = 100;
+			int tmp2 = 100;
 			if(index < black.size() - 1) {
 				tmp1 = black.get(index+1).point;
 				tmp2 = white.get(index+1).point;
